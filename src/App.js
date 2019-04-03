@@ -5,6 +5,7 @@ import './utils/array-extensions'
 
 import store from './store'
 import saga from './sagas/'
+import {watchAndLog } from './sagas/'
 import Root from './layouts/main'
 import { sagaMiddleware } from './middleware'
 
@@ -24,6 +25,7 @@ const App = () => {
 export default App
 
 sagaMiddleware.run(saga)
+sagaMiddleware.run(watchAndLog)
 
 loggedIn() && store.dispatch(startApp())
 

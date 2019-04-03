@@ -1,4 +1,10 @@
-import { takeLatest } from 'redux-saga/effects'
+import {
+  takeLatest
+} from 'redux-saga/effects'
+import {
+  select,
+  take
+} from 'redux-saga/effects'
 
 import * as genericActions from '../actions/generic'
 import * as genericSagas from './generic'
@@ -30,4 +36,20 @@ export default function* saga() {
       if (saga) yield takeLatest(action.getType(), saga)
     }
   }
+}
+
+function* watchAndLog() {
+  while (true) {
+    const action = yield take('*')
+    if (action.type.indexOf('moveMouse') < 0) {
+      const state = yield select()
+
+      console.log('action', action)
+      console.log('state after', state)
+    }
+  }
+}
+
+export {
+  watchAndLog
 }
