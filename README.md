@@ -10,7 +10,7 @@
 
 ## Run locally
 ```bash
-git clone https://github.com/RodionChachura/simple-blog-front
+git clone https://github.com/zfkingth/simple-blog-front.git
 cd simple-blog-front
 npm install
 npm start
