@@ -1,3 +1,3 @@
 import { createAction } from 'redux-act'
 
-export const receiveStories = createAction()
+export const receiveStories = createAction('receiveStories')

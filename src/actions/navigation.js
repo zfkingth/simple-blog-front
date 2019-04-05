@@ -1,4 +1,4 @@
 import { createAction } from 'redux-act'
 
-export const to = createAction()
-export const toStory = createAction()
+export const to = createAction('to')
+export const toStory = createAction('toStory')

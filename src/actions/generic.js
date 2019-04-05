@@ -1,9 +1,9 @@
 import { createAction } from 'redux-act'
 
-export const startApp = createAction()
-export const enterPage = createAction()
-export const exitPage = createAction()
+export const startApp = createAction('startApp')
+export const enterPage = createAction('enterPage')
+export const exitPage = createAction('exitPage')
 export const moveMouse = createAction('moveMouse')
-export const changePageSize = createAction()
-export const tick = createAction()
-export const toggleSnackbar = createAction()
+export const changePageSize = createAction('changePageSize')
+export const tick = createAction('tick')
+export const toggleSnackbar = createAction('toggleSnackbar')

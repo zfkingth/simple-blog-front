@@ -1,3 +1,3 @@
 import { createAction } from 'redux-act'
 
-export const toggleDropdown = createAction()
+export const toggleDropdown = createAction('toggleDropdown')

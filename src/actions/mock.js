@@ -1,3 +1,3 @@
 import { createAction } from 'redux-act'
 
-export const receiveMockState = createAction()
+export const receiveMockState = createAction('receiveMockState')
