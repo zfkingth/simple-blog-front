@@ -9,7 +9,7 @@ const getDefaultState = page => ({
   storyId: undefined
 })
 
-const forward = (state, page) => ({ state, page })
+const forward = (state, page) => ({ ...state, page })
 
 export default _ =>
   createReducer(
