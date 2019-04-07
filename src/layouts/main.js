@@ -40,9 +40,9 @@ class MainLayout extends React.Component {
     window.addEventListener('resize', () =>
       changePageSize({ width: window.innerWidth, height: window.innerHeight })
     )
-    document.addEventListener('mousemove', ({ clientX, clientY }) =>
-      moveMouse({ mouseX: clientX, mouseY: clientY })
-    )
+    // document.addEventListener('mousemove', ({ clientX, clientY }) =>
+    //   moveMouse({ mouseX: clientX, mouseY: clientY })
+    // )
   }
 
   // to: custom back button handle

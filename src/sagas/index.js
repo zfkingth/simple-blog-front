@@ -41,9 +41,8 @@ export default function* saga() {
 function* watchAndLog() {
   while (true) {
     const action = yield take('*')
-    // console.log(action)
-    if (action.type !== genericActions.moveMouse.getType() &&
-      action.type !== genericActions.tick.getType()) {
+    // if (action.type !== genericActions.moveMouse.getType() &&
+    if (action.type !== genericActions.tick.getType()) {
       const state = yield select()
 
 
