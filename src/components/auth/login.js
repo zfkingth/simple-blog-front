@@ -9,23 +9,12 @@ import { isValid } from '../../utils/forms'
 import TextField from './text-field'
 import AuthForm from './auth-form'
 
-import { getFormSubmitErrors } from 'redux-form'
-
-function transToString(state,formName)
-{
- const obj= getFormSubmitErrors(formName)(state);
- const entries=Object.entries(obj);
- const ret=entries.reduce(function(prev,cur){
-  return prev + cur[1];
-},'');
-
- return ret;
-}
+import { transSubmissonToString } from '../../utils/forms'
 
 export default connectTo(
   state => ({
     enabledSubmit: isValid(state, 'login'),
-    myError:transToString(state,'login'),
+    myError:transSubmissonToString(state,'login'),
   }),
   { to, submitLogin },
   reduxForm({ form: 'login' })(

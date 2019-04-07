@@ -1,3 +1,17 @@
+import { getFormSubmitErrors } from 'redux-form'
+
+export function transSubmissonToString(state,formName)
+{
+ const obj= getFormSubmitErrors(formName)(state);
+ const entries=Object.entries(obj);
+ const ret=entries.reduce(function(prev,cur){
+  return prev + cur[1];
+},'');
+
+ return ret;
+}
+
+
 export const submitHandler = (onSubmit, enabledSubmit) => e => {
   e.preventDefault()
   if (enabledSubmit) onSubmit()

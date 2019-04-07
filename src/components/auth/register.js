@@ -8,10 +8,12 @@ import { connectTo } from '../../utils/generic';
 import { isValid} from '../../utils/forms'
 import TextField from './text-field'
 import AuthForm from './auth-form'
+import { transSubmissonToString } from '../../utils/forms'
 
 export default connectTo(
   state => ({
-    enabledSubmit: isValid(state, 'register')
+    enabledSubmit: isValid(state, 'register'),
+    myError:transSubmissonToString(state,'register'),
   }),
   { to, submitRegister },
   reduxForm({ form: 'register' })(
@@ -19,7 +21,8 @@ export default connectTo(
       handleSubmit,
       enabledSubmit,
       submitRegister,
-      to
+      to,
+      myError
     }) => {
       const fields = [
         <Field
@@ -55,6 +58,7 @@ export default connectTo(
           onSubmit={submitRegister}
           submitText='Register'
           onBottomTextClick={() => to('login')}
+          errorText={myError}
           bottomText="Already have an account? Login"
         />
       )
