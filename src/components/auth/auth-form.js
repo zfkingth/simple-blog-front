@@ -4,7 +4,7 @@ import { Paper, Button } from '@material-ui/core'
 
 import Logo from '../logo'
 import Page from '../page-wrapper'
-import { submitAsyncValidation} from '../../utils/forms'
+import { submitAsyncValidation } from '../../utils/forms'
 
 const Form = styled.form`
   display: flex;
@@ -30,7 +30,7 @@ const BottomText = styled(Button)`
   }
 `
 
-export default ({ handleSubmit, enabledSubmit, onSubmit, submitText, onBottomTextClick, bottomText, fields }) => {
+export default ({ handleSubmit, enabledSubmit, onSubmit, submitText, onBottomTextClick, bottomText, fields, errorText }) => {
   const pageStyle = {
     height: '100vh',
     display: 'flex',
@@ -44,8 +44,13 @@ export default ({ handleSubmit, enabledSubmit, onSubmit, submitText, onBottomTex
         <Form
           onSubmit={submitAsyncValidation(handleSubmit, enabledSubmit, onSubmit)}
         >
-          <Logo/>
+          <Logo />
           {fields}
+
+          { errorText && <font color="red" >error: {errorText}</font>}
+          
+
+
           <SubmitButton type="submit" variant="outlined" disabled={!enabledSubmit}>{submitText}</SubmitButton>
         </Form>
       </Container>

@@ -5,13 +5,27 @@ import { submitLogin } from '../../actions/auth'
 import { to } from '../../actions/navigation'
 import { required, email, minLength6, lengthLessThan40 } from '../../validators/forms';
 import { connectTo } from '../../utils/generic';
-import { isValid} from '../../utils/forms'
+import { isValid } from '../../utils/forms'
 import TextField from './text-field'
 import AuthForm from './auth-form'
 
+import { getFormSubmitErrors } from 'redux-form'
+
+function transToString(state,formName)
+{
+ const obj= getFormSubmitErrors(formName)(state);
+ const entries=Object.entries(obj);
+ const ret=entries.reduce(function(prev,cur){
+  return prev + cur[1];
+},'');
+
+ return ret;
+}
+
 export default connectTo(
   state => ({
-    enabledSubmit: isValid(state, 'login')
+    enabledSubmit: isValid(state, 'login'),
+    myError:transToString(state,'login'),
   }),
   { to, submitLogin },
   reduxForm({ form: 'login' })(
@@ -19,7 +33,8 @@ export default connectTo(
       handleSubmit,
       enabledSubmit,
       submitLogin,
-      to
+      to,
+      myError
     }) => {
       const fields = [
         <Field
@@ -38,7 +53,8 @@ export default connectTo(
           type="password"
           validate={[required, minLength6, lengthLessThan40]}
         />
-      ]
+      ];
+     
       return (
         <AuthForm
           fields={fields}
@@ -47,8 +63,11 @@ export default connectTo(
           onSubmit={submitLogin}
           submitText='Login'
           onBottomTextClick={() => to('register')}
+
+          errorText={myError}
           bottomText="Don't have an account? Register"
         />
+
       )
     }
   )
